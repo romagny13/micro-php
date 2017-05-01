@@ -18,6 +18,7 @@ class Injector
 
         $injection = new Injection($name, $value, $injections, $isCachable);
         $this->container[$name] = $injection;
+        return $this;
     }
 
     public function unregister($name){

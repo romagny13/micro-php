@@ -54,8 +54,6 @@ $router->run();
 
 ```php
 <?php
-
-
 $injector = $app->injector;
 
 // Eloquent
@@ -64,21 +62,20 @@ $capsule->addConnection($settings['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$injector->register('db', $capsule);
-$injector->register('auth', \App\Auth\Auth::class);
-$injector->register('AuthMiddleware', \App\Middleware\AuthMiddleware::class, [$injector]);
-$injector->register('csrf', \MicroPHP\Csrf::class);
-$injector->register('CheckCsrfMiddleware', \App\Middleware\CheckCsrfMiddleware::class, [$injector]);
-$injector->register('CsrfMiddleware', \App\Middleware\CsrfMiddleware::class, [$injector]);
-
-
+// flash
 $flash = new \MicroPHP\Flash();
-$injector->register('flash', $flash);
 
-// DI Controllers
-$injector->register('HomeController', \App\Controllers\HomeController::class, [$injector]);
-$injector->register('PostController', \App\Controllers\PostController::class, [$injector]);
-$injector->register('AuthController', \App\Controllers\AuthController::class, [$injector]);
+$injector
+    ->register('db', $capsule)
+    ->register('auth', \App\Auth\Auth::class)
+    ->register('AuthMiddleware', \App\Middleware\AuthMiddleware::class, [$injector])
+    ->register('csrf', \MicroPHP\Csrf::class)
+    ->register('CheckCsrfMiddleware', \App\Middleware\CheckCsrfMiddleware::class, [$injector])
+    ->register('CsrfMiddleware', \App\Middleware\CsrfMiddleware::class, [$injector])
+    ->register('flash', $flash)
+    ->register('HomeController', \App\Controllers\HomeController::class, [$injector])
+    ->register('PostController', \App\Controllers\PostController::class, [$injector])
+    ->register('AuthController', \App\Controllers\AuthController::class, [$injector]);
 
 
 // add variables to twig

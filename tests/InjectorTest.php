@@ -211,4 +211,16 @@ class InjectorTest extends PHPUnit_Framework_TestCase
         $result = $injector->invoke($name);
         $this->assertEquals('Ok', $result);
     }
+
+    function testChain_Registration(){
+        $injector = new Injector();
+        $injector
+            ->register('a','value a')
+            ->register('b', 'value b')
+            ->register('c', 'value c');
+
+        $this->assertTrue($injector->has('a'));
+        $this->assertTrue($injector->has('b'));
+        $this->assertTrue($injector->has('c'));
+    }
 }
