@@ -21,7 +21,10 @@ composer require romagny13/micro-php
 
 * [Gitbook](https://romagny13.gitbooks.io/micro-php/)
 
+
 ## Example
+
+[Micro demo (blog)](https://github.com/romagny13/micro-demo)
 
 ```php
 <?php
@@ -47,7 +50,7 @@ $router->run();
 ```
 
 
-dependencies.php
+**dependencies.php**
 
 ```php
 <?php
@@ -96,7 +99,7 @@ $renderer->twig->addFunction(new Twig_SimpleFunction('canEditPost',function($pos
 ```
 
 
-routes.php
+**routes.php**
 
 ```php
 
