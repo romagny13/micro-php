@@ -1,0 +1,24 @@
+{
+    "name": "romagny13/micro-php",
+    "description": "PHP Router",
+    "authors": [
+        {
+            "name": "Jerome Romagny",
+            "email": "romagny13@yahoo.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MicroPHP\\": "src/"
+        }
+    },
+    "require": {
+        "twig/twig": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "scripts": {
+        "test": "phpunit -c ."
+    }
+}
