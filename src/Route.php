@@ -15,7 +15,7 @@ class Route
     public $query;
     public $router;
 
-    public function __construct($matched, $method, $data, $url, $path, $params, $queryString, $query, $router)
+    public function __construct(RouteConfig $matched, $method, $data, $url, $path, $params, $queryString, $query,Router $router)
     {
         $this->matched = $matched;
         $this->method = $method;

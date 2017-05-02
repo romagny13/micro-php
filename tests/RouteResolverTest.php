@@ -97,14 +97,14 @@ class RouteResolverTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/posts', $result->path);
     }
 
-    function testGetMatched_WithNoMatch_ReturnsFalse()
+    function testGetMatched_WithNoMatch_ReturnsNull()
     {
         $resolver = new \MicroPHP\RouteResolver();
         $routes = [];
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/', function(){}));
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/posts', function(){}));
         $result = $resolver->getMatched($routes,'GET','/posts/10');
-        $this->assertFalse($result);
+        $this->assertNull($result);
     }
 
     function testGetMatched_ResolveWithsParams()
@@ -177,14 +177,17 @@ class RouteResolverTest extends PHPUnit_Framework_TestCase
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/', function(){}));
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/posts', function(){}));
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/posts/:id', function(){}));
-        $route = $resolver->resolve($routes,'GET',$path, $url, 'router');
+        $router = new \MicroPHP\Router([
+            'base' => 'http://localhost/site'
+        ]);
+        $route = $resolver->resolve($routes,'GET',$path, $url, $router);
 
         $this->assertEquals(10, $route->data->id);
         $this->assertEquals('GET', $route->method);
         $this->assertEquals(50, $route->params->id);
         $this->assertEquals($path, $route->path);
         $this->assertEquals($url, $route->url);
-        $this->assertEquals('router', $route->router);
+        $this->assertSame($router, $route->router);
         $this->assertEquals('/posts/:id', $route->matched->path);
     }
 
@@ -197,8 +200,10 @@ class RouteResolverTest extends PHPUnit_Framework_TestCase
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/', function(){}));
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/posts', function(){}));
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/posts/:id', function(){}));
-        $route = $resolver->resolve($routes,'GET',$path, $url, 'router');
-        $this->assertFalse($route);
+        $route = $resolver->resolve($routes,'GET',$path, $url, new \MicroPHP\Router([
+            'base' => 'http://localhost/site'
+        ]));
+        $this->assertNull($route);
     }
 
 }

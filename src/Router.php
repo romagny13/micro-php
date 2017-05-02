@@ -172,7 +172,7 @@ class Router
         $path = $this->url->getPath($this->base, $url);
         // resolve route
         $resolvedRoute = $this->routeResolver->resolve($this->routeConfigs,$method, $path, $url, $this);
-        if($resolvedRoute){
+        if(isset($resolvedRoute)){
             // middlewares
             $middlewares = $this->mergeMiddlewares($resolvedRoute->matched->middlewares, $this->middlewares);
             $this->callMiddlewares($middlewares, $resolvedRoute, function() use($resolvedRoute){

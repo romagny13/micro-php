@@ -66,7 +66,7 @@ class RouteResolver
                 } 
             }
         }
-        return false;
+        return null;
     }
 
     public function getParams($routePath, $toPath){
@@ -120,7 +120,7 @@ class RouteResolver
     
     public function resolve($routes,$method, $path, $url, $router){
         $routeConfig = $this->getMatched($routes, $method, $path);
-        if($routeConfig){
+        if(isset($routeConfig)){
             $params = $this->getParams($routeConfig->path, $path);
             $queryString = $this->getQueryString();
             $query = $this->getQuery($queryString);
@@ -128,7 +128,7 @@ class RouteResolver
             
             return new Route($routeConfig, $method, $data,$url, $path, $params, $queryString, $query, $router);
         }
-        return false;
+        return null;
     }
 
 }
