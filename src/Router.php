@@ -4,9 +4,9 @@ namespace MicroPHP;
 
 class Router
 {
-    private $routeResolver;
-    private $url;
-    private $response;
+    protected $routeResolver;
+    protected $url;
+    protected $response;
     public $middlewares;
     public $injector;
     public $base;
@@ -14,12 +14,14 @@ class Router
 
     public function __construct($settings = null)
     {
-        // settings :
-        // - base
-        // - injector
-        // for Tests:
-        // - server
-        // - SendResponse
+        /*
+            settings :
+             - base
+             - injector
+            for Tests:
+             - server
+             - SendResponse
+        */
 
         $this->middlewares = [];
         $this->routeConfigs = [];
@@ -32,9 +34,7 @@ class Router
             // injector
             $this->injector = isset($settings['injector']) && $settings['injector'] instanceof Injector ? $settings['injector']: null;
             // responses
-            $this->response = isset($settings['SendResponse']) && $settings['SendResponse'] instanceof SendResponseInterface ?
-                new SendResponse($settings['SendResponse'])
-                : new SendResponse();
+            $this->response = isset($settings['SendResponse']) && $settings['SendResponse'] instanceof SendResponseInterface ? $settings['SendResponse']: new SendResponse();
         }
         else {
             $this->base = $this->url->getOrigin();
@@ -162,7 +162,7 @@ class Router
     
     public function go($routeName, $params=[], $queryParams=[]){
         $url = $this->pathFor($routeName, $params, $queryParams);
-        $this->response->location($url);
+        $this->response->redirect($url);
     }
 
     public function run($onError = null){

@@ -5,7 +5,7 @@ use MicroPHP\Router as Router;
 
 class RouteGroup
 {
-    private $url;
+    protected $url;
     public $routeGroupConfigs;
     public $middlewares;
     public $groupBasePath;

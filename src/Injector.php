@@ -1,10 +1,11 @@
 <?php
+
 namespace MicroPHP;
 
 class Injector
 {
-    private $container;
-    private $cache;
+    protected $container;
+    protected $cache;
 
     public function __construct()
     {

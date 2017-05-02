@@ -5,7 +5,7 @@ namespace MicroPHP;
 
 class RouteResolver
 {
-    private $server;
+    protected $server;
 
     public function __construct(ServerInterface $server = null)
     {

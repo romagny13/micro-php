@@ -1,6 +1,6 @@
 {
     "name": "romagny13/micro-php",
-    "description": "PHP Router",
+    "description": "Micro PHP is a Micro Framework with router, dependency injection, twig support and more",
     "authors": [
         {
             "name": "Jerome Romagny",
