@@ -35,7 +35,6 @@ class SendResponseTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(getResponse(500, $response), $strategy->result[6]);
         $response->redirect('my url');
         $this->assertEquals('Location:my url', $strategy->result[7]);
-
     }
 
     function testChainSetHeaderString_AddHeader()
@@ -43,8 +42,8 @@ class SendResponseTest extends PHPUnit_Framework_TestCase
         $strategy = new FakeHeaderStrategy();
         $response = new \MicroPHP\SendResponse($strategy);
         $response
-            ->setHeaderString('1')
-            ->setHeaderString('2');
+            ->setHeader('1')
+            ->setHeader('2');
         
         $this->assertEquals(2, count($strategy->result));
         $this->assertEquals('1', $strategy->result[0]);
@@ -56,8 +55,8 @@ class SendResponseTest extends PHPUnit_Framework_TestCase
         $strategy = new FakeHeaderStrategy();
         $response = new \MicroPHP\SendResponse($strategy);
         $response
-            ->setHeader(200)
-            ->setHeader(204);
+            ->setStatus(200)
+            ->setStatus(204);
 
         $this->assertEquals(2, count($strategy->result));
         $this->assertEquals(getResponse(200, $response), $strategy->result[0]);
@@ -68,7 +67,7 @@ class SendResponseTest extends PHPUnit_Framework_TestCase
     {
         $strategy = new FakeHeaderStrategy();
         $response = new \MicroPHP\SendResponse($strategy);
-        $response->setHeader(200,'My message');
+        $response->setStatus(200,'My message');
         
         $this->assertEquals("HTTP/1.1 200 My message", $strategy->result[0]);
     }

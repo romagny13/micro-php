@@ -179,7 +179,7 @@ class RouteResolverTest extends PHPUnit_Framework_TestCase
         array_push($routes, new \MicroPHP\RouteConfig(['GET'],'/posts/:id', function(){}));
         $route = $resolver->resolve($routes,'GET',$path, $url, 'router');
 
-        $this->assertEquals(10, $route->args->id);
+        $this->assertEquals(10, $route->data->id);
         $this->assertEquals('GET', $route->method);
         $this->assertEquals(50, $route->params->id);
         $this->assertEquals($path, $route->path);

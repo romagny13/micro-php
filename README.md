@@ -131,7 +131,6 @@ $router->get('.*', function($route){
     $route->router->go('home');
 });
 
-// caution execution order(from start to end)
 $router
     ->add($injector->get('CheckCsrfMiddleware'))
     ->add($injector->get('CsrfMiddleware'));

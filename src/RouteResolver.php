@@ -114,7 +114,7 @@ class RouteResolver
         return $this->server->getQueryString();
     }
 
-    public function getArgs(){
+    public function getData(){
         return $this->server->getContent();
     }
     
@@ -124,9 +124,9 @@ class RouteResolver
             $params = $this->getParams($routeConfig->path, $path);
             $queryString = $this->getQueryString();
             $query = $this->getQuery($queryString);
-            $args = $this->getArgs();
+            $data = $this->getData();
             
-            return new Route($routeConfig, $method, $args,$url, $path, $params, $queryString, $query, $router);
+            return new Route($routeConfig, $method, $data,$url, $path, $params, $queryString, $query, $router);
         }
         return false;
     }

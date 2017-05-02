@@ -85,58 +85,58 @@ class SendResponse
         return $this->messages[$code];
     }
 
-    public function setHeaderString($string){
+    public function setHeader($string){
         $this->headerStrategy->setHeaderString($string);
         return $this;
     }
 
-    public function setHeader($code, $message = null){
+    public function setStatus($code, $message = null){
         if(!isset($message)){
             $message = $this->getDefaultMessage($code);
         }
-        return $this->setHeaderString("HTTP/1.1 $code $message");
+        return $this->setHeader("HTTP/1.1 $code $message");
     }
 
     public function notFound($message = null){
-        $this->setHeader(404, $message);
+        $this->setStatus(404, $message);
     }
 
     public function created($content = null, $message = null){
-        $this->setHeader(201,$message);
+        $this->setStatus(201,$message);
         if(isset($content)){
             $this->json($content);
         }
     }
 
     public function ok($content = null, $message = null){
-        $this->setHeader(200,$message);
+        $this->setStatus(200,$message);
         if(isset($content)){
             $this->json($content);
         }
     }
 
     public function noContent($message = null){
-        $this->setHeader(204, $message);
+        $this->setStatus(204, $message);
     }
     
     public function unauthorized($message = null){
-        $this->setHeader(401, $message);
+        $this->setStatus(401, $message);
     }
 
     public function badRequest($message = null){
-        $this->setHeader(400, $message);
+        $this->setStatus(400, $message);
     }
 
     public function internalServerError(){
-        $this->setHeader(500);
+        $this->setStatus(500);
     }
 
     public function redirect($url){
-        $this->setHeaderString('Location:'.$url);
+        $this->setHeader('Location:'.$url);
     }
 
     public function json($content){
-        $this->setHeaderString('Content-Type: application/json');
+        $this->setHeader('Content-Type: application/json');
         $this->jsonStrategy->encode($content);
     }
 }

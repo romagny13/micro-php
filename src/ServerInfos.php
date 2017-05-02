@@ -44,8 +44,4 @@ class ServerInfos implements ServerInterface
         }
         return null;
     }
-
-    public function setHeaderString($string){
-        header($string);
-    }
 }

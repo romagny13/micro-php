@@ -34,7 +34,7 @@ class Router
             // injector
             $this->injector = isset($settings['injector']) && $settings['injector'] instanceof Injector ? $settings['injector']: null;
             // responses
-            $this->response = isset($settings['SendResponse']) && $settings['SendResponse'] instanceof SendResponseInterface ? $settings['SendResponse']: new SendResponse();
+            $this->response = isset($settings['SendResponse']) ? $settings['SendResponse']: new SendResponse();
         }
         else {
             $this->base = $this->url->getOrigin();
