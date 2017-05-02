@@ -11,7 +11,7 @@ Micro PHP is a Micro Framework with router, dependency injection, twig support a
 Extensions:
 
 * **Flash** messages ([Flash](https://github.com/romagny13/flash))
-* **Csrf** Protection (Csrf)
+* **Csrf** Protection ([Csrf](https://github.com/romagny13/csrf))
 * **Form Validation** ([PHPValidator](https://packagist.org/packages/romagny13/php-validator))
 * And **more** (easy to use with Eloquent ORM for example)
 
