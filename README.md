@@ -21,8 +21,9 @@ Extensions:
 composer require romagny13/micro-php
 ```
 
+## Documentation
 
-* [Documentation](https://romagny13.gitbooks.io/micro-php/)
+* [Wiki](https://github.com/romagny13/micro-php/wiki)
 
 
 ## Example
